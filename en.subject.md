@@ -5,10 +5,7 @@
 - use these flags: -Wall -Wextra -Werror
 - don't use braces for single-line if statements
 - no function implementation in header files
-- You should be able to use each of your headers independently from others. Thus,
-    they must include all the dependencies they need. However, you must avoid the
-    problem of double inclusion by adding **include guards**. Otherwise, your grade will
-    be 0.
+
 # ex00: Start with a few functions
 Files to turn in :Makefile, main.cpp, whatever.{h, hpp}
 Forbidden functions :None
