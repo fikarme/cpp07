@@ -1,4 +1,4 @@
-NAME    	= convert
+NAME    	= lain
 CPP     	= c++
 CPPFLAGS	= -std=c++98 -Wall -Wextra -Werror
 RM			= rm -rf
@@ -14,7 +14,7 @@ $(NAME): $(OBJ)
 $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(OBJDIR)
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
-    
+
 clean:
 	@$(RM) $(OBJDIR)
 
