@@ -44,9 +44,9 @@ Should output:
 a = 3, b = 2
 min(a, b) = 2
 max(a, b) = 3
-c = chaine2, d = chaine
-min(c, d) = chaine
-max(c, d) = chaine
+c = chaine2, d = chaine1
+min(c, d) = chaine1
+max(c, d) = chaine2
 
 # ex01: Iter
 Files to turn in :Makefile, main.cpp, iter.{h, hpp}
