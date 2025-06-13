@@ -2,19 +2,28 @@
 #define ITER_HPP
 
 #include <cstddef> // size_t
+#include <cctype> // toupper
 #include <iostream>
+
 using std::cout;
 using std::endl;
 using std::string;
 
-template <typename TypeElement, typename TypeFunction>
-void iter(TypeElement* ArrayAddress, size_t Length, TypeFunction FunctionToApply) {
-    if (!ArrayAddress || Length == 0)
-        return;
+// template <typename T>
+// void iter(T *arr,  size_t len, void (*f)(T &c)) {
+//     if (!arr || len == 0)
+//         return;
+// 	for (size_t i = 0; i < len; i++)
+// 		(*f)(arr[i]);
+// }
 
-    for (size_t Index = 0; Index < Length; ++Index) {
-        FunctionToApply(ArrayAddress[Index]);
-    }
+
+template <typename E, typename F>
+void iter(E* arr, size_t len, F f) {
+    if (!arr || len == 0)
+        return;
+    for (size_t i = 0; i < len; ++i)
+        f(arr[i]);
 }
 
 #endif
