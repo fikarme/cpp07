@@ -5,15 +5,13 @@ inline void y(int n) {
 		 << n << "__________/\\_ " << RST << endl;
 }
 
-inline void r(const char *msg) {
-	cerr << RED << msg << RST << endl;
-}
+inline void r(const char *msg) { cerr << RED << msg << RST << endl; }
 
 int main() {
 	srand(time(NULL));
 
 	Array<int> numbers(100);
-	int *arr = new int[100]; // raw array
+	int *arr = new int[100];
 
 	for (int i = 0; i < 100; i++) {
 		const int val = rand();
@@ -21,7 +19,7 @@ int main() {
 		arr[i] = val;
 	}
 
-	Array<int> tmp(100); // indices 0-99
+	Array<int> tmp(100);
 
 	y(1);
 	try
@@ -57,10 +55,7 @@ int main() {
 		r("tst[3] and tmp[3] are the same!");
 
 	y(4);
-	try
-	{
-		numbers[100] = 0;
-	}
+	try { numbers[100] = 0; }
 	catch (const exception &e) { r(e.what()); }
 
 	delete[] arr;
