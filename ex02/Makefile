@@ -23,7 +23,7 @@ fclean: clean
 
 re: fclean all
 
-e: $(NAME)
+e: fclean $(NAME)
 	@./$(NAME)
 
 .PHONY: all clean fclean re e

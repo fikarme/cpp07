@@ -5,6 +5,10 @@ inline void y(int n) {
 		 << n << "__________/\\_ " << RST << endl;
 }
 
+inline void r(const char *msg) {
+	cerr << RED << msg << RST << endl;
+}
+
 int main() {
 	srand(time(NULL));
 
@@ -27,7 +31,7 @@ int main() {
 		for (int i = 0; i < 100; i++)
 			cout << "tmp[" << i << "] = " << tmp[i] << endl;
 	}
-	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
+	catch (const exception &e) { r(e.what()); }
 
 	tmp = numbers;
 	Array<int> tst(tmp);
@@ -38,28 +42,26 @@ int main() {
 		for (int i = 0; i < 100; i++)
 		{
 			if (tmp[i] != tst[i])
-				cerr << RED << "ERR: didn't save the same val!" << RST << endl;
+				r("didn't save the same val!");
 			cout << "tmp[" << i << "] = " << tmp[i] << "	-	"
 				 << "tst[" << i << "] = " << tst[i] << endl;
 		}
 	}
-	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
+	catch (const exception &e) { r(e.what()); }
 
 	y(3);
-	cout << "tst[1] = " << tst[1] << endl;
-	cout << "tmp[1] = " << tmp[1] << endl;
+	tmp[3] = 123456789;
+	cout << "tst[3] = " << tst[3] <<
+	endl << "tmp[3] = " << tmp[3] << endl;
+	if (tmp[3] == tst[3])
+		r("tst[3] and tmp[3] are the same!");
 
 	y(4);
-	tst[1] = 1234567890;
-	cout << "tst[1] = " << tst[1] << endl;
-	cout << "tmp[1] = " << tmp[1] << endl;
-
-	y(5);
 	try
 	{
 		numbers[100] = 0;
 	}
-	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
+	catch (const exception &e) { r(e.what()); }
 
 	delete[] arr;
 	return 0;
