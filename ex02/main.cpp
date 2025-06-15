@@ -1,86 +1,66 @@
 #include "Array.hpp"
 
-int main()
-{
-  Array<int> Numbers(100);
-  int *PtrArr = new int[100];
+inline void y(int n) {
+	cout << endl << YLW << " _/\\__________TEST"
+		 << n << "__________/\\_ " << RST << endl;
+}
 
-  srand(time(NULL));
+int main() {
+	srand(time(NULL));
 
-  for (int i = 0; i < 100; i++)
-  {
-    const int Value = rand();
-    Numbers[i] = Value;
-    PtrArr[i] = Value;
-  }
+	Array<int> numbers(100);
+	int *arr = new int[100]; // raw array
 
-  {
-    Array<int> Tmp(100);
+	for (int i = 0; i < 100; i++) {
+		const int val = rand();
+		numbers[i] = val;
+		arr[i] = val;
+	}
 
-    cout << "______________TEST - 1___________________" << endl;
+	Array<int> tmp(100); // indices 0-99
 
-    try
-    {
-      for (int i = 0; i < 100; i++)
-        Tmp[i] = 7;
-      for (int i = 0; i < 100; i++)
-        cout << "Tmp[" << i << "]_" << Tmp[i] << endl;
-      cout << endl;
-    }
-    catch (const exception &E)
-    {
-      cerr << E.what();
-    }
+	y(1);
+	try
+	{
+		for (int i = 0; i < 100; i++)
+			tmp[i] = 4;
+		for (int i = 0; i < 100; i++)
+			cout << "tmp[" << i << "] = " << tmp[i] << endl;
+	}
+	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
 
-    cout << "______________TEST - 2___________________" << endl;
+	tmp = numbers;
+	Array<int> tst(tmp);
 
-    Tmp = Numbers;
-    Array<int> Test(Tmp);
+	y(2);
+	try
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			if (tmp[i] != tst[i])
+				cerr << RED << "ERR: didn't save the same val!" << RST << endl;
+			cout << "tmp[" << i << "] = " << tmp[i] << "	-	"
+				 << "tst[" << i << "] = " << tst[i] << endl;
+		}
+	}
+	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
 
-    try
-    {
-      for (int i = 0; i < 100; i++)
-      {
-        if (Tmp[i] != Test[i])
-        {
-          cerr << "Didn't save the same value!!" << endl;
-          return 1;
-        }
-        cout << "Tmp[" << i << "]_" << Tmp[i] << "  -  " << "Test[" << i
-             << "]_" << Test[i] << endl;
-      }
-    }
-    catch (const exception &E)
-    {
-      cerr << E.what();
-    }
+	y(3);
+	cout << "tst[1] = " << tst[1] << endl;
+	cout << "tmp[1] = " << tmp[1] << endl;
 
-    cout << endl << "______________TEST - 3___________________" << endl;
+	y(4);
+	tst[1] = 1234567890;
+	cout << "tst[1] = " << tst[1] << endl;
+	cout << "tmp[1] = " << tmp[1] << endl;
 
-    cout << "Test[1]_" << Test[1] << endl;
-    cout << "Tmp[1]_" << Tmp[1] << endl;
+	y(5);
+	try
+	{
+		numbers[100] = 0;
+	}
+	catch (const exception &e) { cerr << RED << e.what() << RST << endl; }
 
-    cout << endl << "______________TEST - 4___________________" << endl;
-
-    Test[1] = 123456789;
-
-    cout << "Test[1]_" << Test[1] << endl;
-    cout << "Tmp[1]_" << Tmp[1] << endl;
-  }
-
-  {
-    try
-    {
-      cout << endl << "______________TEST - 5___________________" << endl;
-      Numbers[100] = 0;
-    }
-    catch (const exception &E)
-    {
-      cerr << E.what() << endl;
-      cout << "You are trying to access out of range. WTF?" << endl;
-    }
-  }
-
-  delete[] PtrArr;
-  return 0;
+	delete[] arr;
+	return 0;
 }
